@@ -40,29 +40,31 @@ body {
 	height: 100%;
 }
 
-.duaName{
+.duaName, .ziyaraName{
 	background-color: white;
 	padding: 10px 10px 10px 10px;
 	margin: 0 0 10px 0;
 	border-radius: 3px;
 	color: rgb(53, 125, 20);
 }
-
 #duas{
+	transform: translate(-150%, -50%);
+}
+#ziyaras{
+	transform: translate(50%, -50%);
+}
+#duas, #ziyaras{
 	width: max-content;
 	background-color: rgb(53, 125, 20);
 	padding: 5px 20px 20px 20px;
 	border-radius: 5px;
-	display: inline-block;
-}
-#duaNames{
-	column-count: 2;
-}
-#startPage{
 	position: absolute;
 	top: 50%;
-	transform: translate(-50%, -50%);
 	left: 50%;
+	width: 21%;
+}
+#duaNames, #ziyaraNames{
+	column-count: 2;
 }
 
 .title{
