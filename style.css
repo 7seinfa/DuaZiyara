@@ -1,0 +1,63 @@
+body {
+	background-image: url("1.jpg");
+	text-align: center;
+	height: 90%;
+}
+
+@font-face {
+  font-family: arabic;
+  src: url("najaf.ttf");
+}
+
+#english, #arabic {
+    text-align: center;
+    position: relative;
+    top: 75%;
+}
+
+#arabic {
+    font-family: arabic;
+    font-size: 56px;
+    width: max-content;
+    display: inline-block;
+    padding: 10px 40px 15px 40px;
+    color: rgb(53, 125, 20);
+    background-image: linear-gradient(white, lightgrey);
+}
+
+#english {
+    font-family: Roberto;
+    font-size: 48px;
+    background-color: rgba(53, 125, 20);
+    width: max-content;
+    display: inline-block;
+    padding: 10px;
+    max-width: 1440px;
+    color: white;
+}
+
+#duaPage{
+	height: 100%;
+}
+
+.duaName{
+	background-color: white;
+	padding: 10px 10px 10px 10px;
+	margin: 0 0 10px 0;
+	border-radius: 3px;
+	color: rgb(53, 125, 20);
+}
+
+#duas{
+	width: max-content;
+	background-color: rgb(53, 125, 20);
+	padding: 5px 20px 20px 20px;
+	border-radius: 5px;
+}
+#duaNames{
+	column-count: 2;
+}
+
+.title{
+	color: white;
+}

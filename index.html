@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	
+	<div id="startPage">
+	
+		<div id = "duas">
+			<h1 class = "title">Duas</h1>
+			<div id = "duaNames">
+			
+			</div>
+		</div>
+	</div>
+	
+	<div id="duaPage" style = "display: none;">
+		<div id = "arabic">
+		
+		</div>
+		<div class = "separate"></div>
+		<div id = "english">
+			
+		</div>
+	</div>
+	<script>
+		var start = true;
+		var myObj;
+		var arabic;
+		var english;
+		var index = 0;
+		var startPage = document.getElementById("startPage");
+		var duaPage = document.getElementById("duaPage");
+		var duaNamesElement = document.getElementById("duaNames");
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			myObj = JSON.parse(this.responseText);
+			for(var i=0; i<myObj.length; i++){
+				var newName=document.createElement("div");
+				newName.classList.add("duaName");
+				newName.innerHTML=myObj[i].title;
+				newName.setAttribute("value", i);
+				
+				duaNamesElement.appendChild(newName);
+			}
+		  }
+		};
+		xmlhttp.open("GET", "duas.json", true);
+		xmlhttp.send();
+		window.onclick = e => {
+			if(e.target.classList[0]=="duaName"){
+				goToDua(e.target.getAttribute("value"));
+			}
+		} 
+		function goToDua(i){
+			startPage.setAttribute("style", "display:none;");
+			duaPage.setAttribute("style", "");
+			arabic=myObj[i].arabic.split("\n");
+			english=myObj[i].english.split("\n");
+			document.getElementById("arabic").innerHTML = arabic[0];
+			document.getElementById("english").innerHTML = english[0];
+			start = false;
+			document.addEventListener('keypress', nextOrBack);
+		}
+		
+
+		function nextOrBack(e) {
+			if(e.code=="KeyD"){
+				index++;
+				if(index<arabic.length){
+					document.getElementById("arabic").innerHTML = arabic[index];
+					document.getElementById("english").innerHTML = english[index];
+				}else{
+					index--;
+				}
+			}
+			if(e.code=="KeyA"){
+				index--;
+				if(index>=0){
+					document.getElementById("arabic").innerHTML = arabic[index];
+					document.getElementById("english").innerHTML = english[index];
+				}else{
+					index++;
+				}
+			}
+		}
+	
+		
+	</script>
+</body>
+
+</html>
