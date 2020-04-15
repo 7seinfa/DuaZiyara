@@ -23,6 +23,7 @@ body {
     padding: 10px 40px 15px 40px;
     color: rgb(53, 125, 20);
     background-image: linear-gradient(white, lightgrey);
+	direction: rtl;
 }
 
 #english {
