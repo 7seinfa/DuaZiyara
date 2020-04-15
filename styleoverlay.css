@@ -13,6 +13,7 @@
     background-image: linear-gradient(white, lightgrey);
 	top: 0;
 	height: 40%;
+	direction: rtl;
 }
 
 #englishOuter {
