@@ -28,8 +28,40 @@
 			<div id = "settings" class = "innerContainer" style = "columns: 1;columns: 1;display: inline-flex;width: -moz-available;">
 				<div id = "slideshowSettings" style="float: left;">
 					<h1 class = "enabled" id = "slide">Slideshow</h1>
-					<h2>Transition Speed:</h2>
-					<input class = "right" id = "tSpeed" type = "text" value = "15"></input>
+					<div class = "row">
+						<h2>Transition Speed:</h2>
+						<input class = "right" id = "tSpeed" type = "text" value = "15"></input>
+					</div>
+					<br>
+					<h2>Arabic Color Options (Hex):</h2>
+					<div class = "row">
+						<h2>Top:</h2>
+						<input class = "right" id = "arTop" type = "text" value = "#FFFFFF"></input>
+					</div>
+					<div class = "row">
+						<h2>Bottom</h2>
+						<input class = "right" id = "arBot" type = "text" value = "#D3D3D3"></input>
+					</div>
+					<br>
+					<div class = "row">
+						<h2>Arabic Text Color</h2>
+						<input class = "right" id = "arText" type = "text" value = "#357d14"></input>
+					</div>
+					<br>
+					<h2>English Color Options (Hex):</h2>
+					<div class = "row">
+						<h2>Top:</h2>
+						<input class = "right" id = "enTop" type = "text" value = "#357d14"></input>
+					</div>
+					<div class = "row">
+						<h2>Bottom</h2>
+						<input class = "right" id = "enBot" type = "text" value = "#357d14"></input>
+					</div>
+					<br>
+					<div class = "row">
+						<h2>English Text Color</h2>
+						<input class = "right" id = "enText" type = "text" value = "#FFFFFF"></input>
+					</div>
 					
 				</div>
 				<div id = "overlaySettings" style="float: right;width: 50%;">
@@ -140,6 +172,24 @@
 		
 		var enTextO = document.getElementById("enTextO").value;
 		document.getElementById("enTextO").addEventListener("keyup", function(){enTextO=document.getElementById("enTextO").value;});
+		
+		var arTop = document.getElementById("arTop").value;
+		document.getElementById("arTop").addEventListener("keyup", function(){arTop=document.getElementById("arTop").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
+		
+		var arBot = document.getElementById("arBot").value;
+		document.getElementById("arBot").addEventListener("keyup", function(){arBot=document.getElementById("arBot").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
+		
+		var arText = document.getElementById("arText").value;
+		document.getElementById("arText").addEventListener("keyup", function(){arText=document.getElementById("arText").value;document.getElementById("arabic").style.color=arText;});
+		
+		var enTop = document.getElementById("enTop").value;
+		document.getElementById("enTop").addEventListener("keyup", function(){enTop=document.getElementById("enTop").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
+		
+		var enBot = document.getElementById("enBot").value;
+		document.getElementById("enBot").addEventListener("keyup", function(){enBot=document.getElementById("enBot").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
+		
+		var enText = document.getElementById("enText").value;
+		document.getElementById("enText").addEventListener("keyup", function(){enText=document.getElementById("enText").value;document.getElementById("english").style.color=enText;});
 		
 		var startPage = document.getElementById("startPage");
 		var duaNamesElement = document.getElementById("duaNames");
