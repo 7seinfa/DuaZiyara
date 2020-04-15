@@ -203,6 +203,7 @@
 		//stop display of start page, populate arabic and english dua arrays, display first line, add event listener to see if button is pressed
 		function goToDua(i){
 			if(slideshow){
+				alert("Use the A and D keys to navigate between lines. Press Q to quit.");
 				startPage.style.display="none";
 				duaPage.style.display="";
 				arabic=duaObj[i].arabic.split("\n");
@@ -211,11 +212,13 @@
 				englishObj.innerHTML = english[0];
 				document.addEventListener('keypress', nextOrBack);
 			}else{
+				alert("Use the A and D keys to navigate between lines.");
 				window.open("overlay.html?dua&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
 		}
 		function goToZiyara(i){
 			if(slideshow){
+				alert("Use the A and D keys to navigate between lines. Press Q to quit.");
 				startPage.style.display="none";
 				duaPage.style.display="";
 				arabic=ziyaraObj[i].arabic.split("\n");
@@ -224,7 +227,8 @@
 				englishObj.innerHTML = english[0];
 				document.addEventListener('keypress', nextOrBack);
 			}else{
-				window.open("overlay.html?ziyara&"+i+"&"+transitionSpeedO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+				alert("Use the A and D keys to navigate between lines.");
+				window.open("overlay.html?ziyara&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
 		}
 		
