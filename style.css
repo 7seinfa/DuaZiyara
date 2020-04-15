@@ -17,7 +17,7 @@ body {
 
 #arabic {
     font-family: arabic;
-    font-size: 56px;
+    font-size: 3vw;
     width: max-content;
     display: inline-block;
     padding: 10px 40px 15px 40px;
@@ -27,7 +27,7 @@ body {
 
 #english {
     font-family: Roberto;
-    font-size: 48px;
+    font-size: 2vw;
     background-color: rgba(53, 125, 20);
     width: max-content;
     display: inline-block;
@@ -41,32 +41,56 @@ body {
 }
 
 .duaName, .ziyaraName{
+	font-size: 1vw;
 	background-color: white;
 	padding: 10px 10px 10px 10px;
 	margin: 0 0 10px 0;
 	border-radius: 3px;
 	color: rgb(53, 125, 20);
 }
-#duas{
-	transform: translate(-150%, -50%);
-}
-#ziyaras{
-	transform: translate(50%, -50%);
-}
-#duas, #ziyaras{
-	width: max-content;
+.container{
+	display: inline-block;
+	width: 30%;
 	background-color: rgb(53, 125, 20);
 	padding: 5px 20px 20px 20px;
 	border-radius: 5px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 21%;
+	vertical-align: middle;
 }
-#duaNames, #ziyaraNames{
+.innerContainer{
 	column-count: 2;
 }
-
-.title{
+h1{
 	color: white;
+}
+h2{
+	color: white;
+	font-size: 1vw;
+	float: left;
+	margin: 0 auto;
+}
+#startPage{
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	width: 100%;
+}
+.right{
+	width: 20%;
+	float: right;
+	margin-right: 2%;
+}
+.enabled{
+	background-color: white;
+	color: rgb(53, 125, 20);
+	border-radius: 10px;
+}
+.disabled{
+	background-color: rgb(53, 125, 20);
+	color:white;
+	border-radius: 0px;
+}
+.row {
+    width: 100%;
+    display: flow-root;
 }

@@ -8,18 +8,77 @@
 <body>
 	
 	<div id="startPage">
-	
-		<div id = "duas">
+		
+		<div id = "duas" class = "container">
 			<h1 class = "title">Duas</h1>
-			<div id = "duaNames">
+			<div id = "duaNames" class = "innerContainer">
 			
 			</div>
 		</div>
 		
-		<div id = "ziyaras">
+		<div id = "ziyaras" class = "container">
 			<h1 class = "title">Ziyaras</h1>
-			<div id = "ziyaraNames">
+			<div id = "ziyaraNames" class = "innerContainer">
 			
+			</div>
+		</div>
+		
+		<div class = "container">
+			<h1 class = "title">Settings</h1>
+			<div id = "settings" class = "innerContainer" style = "columns: 1;columns: 1;display: inline-flex;width: -moz-available;">
+				<div id = "slideshowSettings" style="float: left;">
+					<h1 class = "enabled" id = "slide">Slideshow</h1>
+					<h2>Transition Speed:</h2>
+					<input class = "right" id = "tSpeed" type = "text" value = "15"></input>
+					
+				</div>
+				<div id = "overlaySettings" style="float: right;width: 50%;">
+					<h1 class = "disabled" id = "overlay">Overlay</h1>
+					<div class = "row">
+						<h2>Transition Speed:</h2>
+						<input class = "right" id = "tSpeedO" type = "text" value = "15"></input>
+					</div>
+					<br>
+					<h2>Size (in pixels):</h2>
+					<div class = "row">
+						<h2>Width:</h2>
+						<input class = "right" id = "width" type = "text" value = "1920"></input>
+					</div>
+					<div class = "row">
+						<h2>Height</h2>
+						<input class = "right" id = "height" type = "text" value = "400"></input>
+					</div>
+					<br>
+					<h2>Arabic Color Options (Hex):</h2>
+					<div class = "row">
+						<h2>Top:</h2>
+						<input class = "right" id = "arTopO" type = "text" value = "#FFFFFF"></input>
+					</div>
+					<div class = "row">
+						<h2>Bottom</h2>
+						<input class = "right" id = "arBotO" type = "text" value = "#D3D3D3"></input>
+					</div>
+					<br>
+					<div class = "row">
+						<h2>Arabic Text Color</h2>
+						<input class = "right" id = "arTextO" type = "text" value = "#357d14"></input>
+					</div>
+					<br>
+					<h2>English Color Options (Hex):</h2>
+					<div class = "row">
+						<h2>Top:</h2>
+						<input class = "right" id = "enTopO" type = "text" value = "#357d14"></input>
+					</div>
+					<div class = "row">
+						<h2>Bottom</h2>
+						<input class = "right" id = "enBotO" type = "text" value = "#357d14"></input>
+					</div>
+					<br>
+					<div class = "row">
+						<h2>English Text Color</h2>
+						<input class = "right" id = "enTextO" type = "text" value = "#FFFFFF"></input>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -34,16 +93,59 @@
 		</div>
 	</div>
 	<script>
-		var start = true;
-		var duaObj;
-		var ziyaraObj;
-		var arabic;
-		var english;
-		var index = 0;
+		var duaObj; //dua json file
+		var ziyaraObj; //ziyara json file
+
+
+		/* START PAGE */
+		//settings
+		var slideshow = true;
+		document.getElementById("slide").addEventListener("mousedown", function(){
+			slideshow=true;
+			document.getElementById("slide").setAttribute("class", "enabled");
+			document.getElementById("overlay").setAttribute("class", "disabled");
+		});
+		document.getElementById("overlay").addEventListener("mousedown", function(){
+			slideshow=false;
+			document.getElementById("slide").setAttribute("class", "disabled");
+			document.getElementById("overlay").setAttribute("class", "enabled");
+		});
+		
+		var transitionSpeed = document.getElementById("tSpeed").value;
+		document.getElementById("tSpeed").addEventListener("keyup", function(){transitionSpeed=document.getElementById("tSpeed").value;});
+		
+		var transitionSpeedO = document.getElementById("tSpeedO").value;
+		document.getElementById("tSpeedO").addEventListener("keyup", function(){transitionSpeedO=document.getElementById("tSpeedO").value;});
+		
+		var height = document.getElementById("height").value;
+		document.getElementById("height").addEventListener("keyup", function(){height=document.getElementById("height").value;});
+		
+		var width = document.getElementById("width").value;
+		document.getElementById("width").addEventListener("keyup", function(){width=document.getElementById("width").value;});
+		
+		var arTopO = document.getElementById("arTopO").value;
+		document.getElementById("arTopO").addEventListener("keyup", function(){arTopO=document.getElementById("arTopO").value;});
+		
+		var arBotO = document.getElementById("arBotO").value;
+		document.getElementById("arBotO").addEventListener("keyup", function(){arBotO=document.getElementById("arBotO").value;});
+		
+		var arTextO = document.getElementById("arTextO").value;
+		document.getElementById("arTextO").addEventListener("keyup", function(){arTextO=document.getElementById("arTextO").value;});
+		
+		var enTopO = document.getElementById("enTopO").value;
+		document.getElementById("enTopO").addEventListener("keyup", function(){enTopO=document.getElementById("enTopO").value;});
+		
+		var enBotO = document.getElementById("enBotO").value;
+		document.getElementById("enBotO").addEventListener("keyup", function(){enBotO=document.getElementById("enBotO").value;});
+		
+		var enTextO = document.getElementById("enTextO").value;
+		document.getElementById("enTextO").addEventListener("keyup", function(){enTextO=document.getElementById("enTextO").value;});
+		
 		var startPage = document.getElementById("startPage");
-		var duaPage = document.getElementById("duaPage");
 		var duaNamesElement = document.getElementById("duaNames");
 		var ziyaraNamesElement = document.getElementById("ziyaraNames");
+		
+		//Open dua.json file, parse, and populate dua names, with value set as index
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 		  if (this.readyState == 4 && this.status == 200) {
@@ -61,7 +163,7 @@
 		xmlhttp.open("GET", "duas.json", true);
 		xmlhttp.send();
 		
-		
+		//Open ziyarat.json file, parse, and populate ziyara names, with value set as index
 		var xmlhttp1 = new XMLHttpRequest();
 		xmlhttp1.onreadystatechange = function() {
 		  if (this.readyState == 4 && this.status == 200) {
@@ -79,65 +181,91 @@
 		xmlhttp1.open("GET", "ziyarat.json", true);
 		xmlhttp1.send();
 		
-		
+		//if the window is clicked, check if dua or ziyara is clicked, direct to function
 		window.onclick = e => {
 			if(e.target.classList[0]=="duaName"){
 				goToDua(e.target.getAttribute("value"));
-			}
-			if(e.target.classList[0]=="ziyaraName"){
+			}else if(e.target.classList[0]=="ziyaraName"){
 				goToZiyara(e.target.getAttribute("value"));
 			}
 		} 
+		
+		
+		/* DUA/ZIYARA SLIDE */
+		var arabic;
+		var english;
+		var arabicObj = document.getElementById("arabic");
+		var englishObj = document.getElementById("english");
+		var index = 0;
+		var duaPage = document.getElementById("duaPage");
+		
+		
+		//stop display of start page, populate arabic and english dua arrays, display first line, add event listener to see if button is pressed
 		function goToDua(i){
-			startPage.setAttribute("style", "display:none;");
-			duaPage.setAttribute("style", "");
-			arabic=duaObj[i].arabic.split("\n");
-			english=duaObj[i].english.split("\n");
-			document.getElementById("arabic").innerHTML = arabic[0];
-			document.getElementById("english").innerHTML = english[0];
-			start = false;
-			document.addEventListener('keypress', nextOrBack);
-		}
-		
-		function goToZiyara(i){
-			startPage.setAttribute("style", "display:none;");
-			duaPage.setAttribute("style", "");
-			arabic=ziyaraObj[i].arabic.split("\n");
-			english=ziyaraObj[i].english.split("\n");
-			document.getElementById("arabic").innerHTML = arabic[0];
-			document.getElementById("english").innerHTML = english[0];
-			start = false;
-			document.addEventListener('keydown', nextOrBack);
-		}
-		
-
-		function nextOrBack(e) {
-			/*if(e.code=="KeyD"||e.code == "ArrowRight"){
-				index++;
-				if(index<arabic.length){
-					document.getElementById("arabic").innerHTML = arabic[index];
-					document.getElementById("english").innerHTML = english[index];
-				}else{
-					index--;
-				}
+			if(slideshow){
+				startPage.style.display="none";
+				duaPage.style.display="";
+				arabic=duaObj[i].arabic.split("\n");
+				english=duaObj[i].english.split("\n");
+				arabicObj.innerHTML = arabic[0];
+				englishObj.innerHTML = english[0];
+				document.addEventListener('keypress', nextOrBack);
+			}else{
+				window.open("overlay.html?dua&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
-			if(e.code=="KeyA"||e.code == "ArrowLeft"){
-				index--;
-				if(index>=0){
-					document.getElementById("arabic").innerHTML = arabic[index];
-					document.getElementById("english").innerHTML = english[index];
-				}else{
-					index++;
-				}
-			}*/
-			
+		}
+		function goToZiyara(i){
+			if(slideshow){
+				startPage.style.display="none";
+				duaPage.style.display="";
+				arabic=ziyaraObj[i].arabic.split("\n");
+				english=ziyaraObj[i].english.split("\n");
+				arabicObj.innerHTML = arabic[0];
+				englishObj.innerHTML = english[0];
+				document.addEventListener('keypress', nextOrBack);
+			}else{
+				window.open("overlay.html?ziyara&"+i+"&"+transitionSpeedO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+			}
+		}
+		
+		var disapp;
+		var reapp;
+		//If right pressed, next line, unless on last line, if left pressed, previous line, unless first line
+		function nextOrBack(e) {
 			switch(e.code){
 				case "KeyD":
 				case "ArrowRight":
+					var transitionFrames = 0.03;
+					clearInterval(disapp);
+					clearInterval(reapp);
 					index++;
 					if(index<arabic.length){
-						document.getElementById("arabic").innerHTML = arabic[index];
-						document.getElementById("english").innerHTML = english[index];
+						var x = 1;
+						arabicObj.style.opacity=1;
+						englishObj.style.opacity=1;
+						disapp = setInterval(function(){
+							arabicObj.style.opacity=x;
+							englishObj.style.opacity=x;
+							if(x<0){
+								x=0;
+								arabicObj.style.opacity=0;
+								englishObj.style.opacity=0;
+								clearInterval(disapp);
+								arabicObj.innerHTML = arabic[index];
+								englishObj.innerHTML = english[index];
+								reapp = setInterval(function(){
+									arabicObj.style.opacity=x;
+									englishObj.style.opacity=x;
+									if(x>1){
+										clearInterval(reapp);
+										x=1;
+									}
+									x+=transitionFrames;
+								}, transitionSpeed);
+							}
+							x-=transitionFrames;
+						}, transitionSpeed);
+						
 					}else{
 						index--;
 					}
@@ -146,15 +274,25 @@
 				case "ArrowLeft":
 					index--;
 					if(index>=0){
-						document.getElementById("arabic").innerHTML = arabic[index];
-						document.getElementById("english").innerHTML = english[index];
+						arabicObj.innerHTML = arabic[index];
+						englishObj.innerHTML = english[index];
 					}else{
 						index++;
 					}
 					break;
+				case "KeyQ":
+					index=0;
+					startPage.style.display="";
+					document.removeEventListener('keypress', nextOrBack);
+					duaPage.style.display="none";
+					clearInterval(reapp);
+					clearInterval(disapp);
+					arabicObj.style.opacity=1;
+					englishObj.style.opacity=1;
+					break;
 			}
+			
 		}
-	
 		
 	</script>
 </body>

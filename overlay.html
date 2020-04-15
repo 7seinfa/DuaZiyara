@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+
+<head>
+<link rel="stylesheet" href="styleoverlay.css">
+</head>
+
+<body>
+	<div id = "arabicOuter">
+		<div id = "arabicText">
+		
+		</div>
+	</div>
+	<div id = "englishOuter">
+		<div id = "englishText">
+		
+		</div>
+	</div>
+	
+	<script>
+		//document.getElementById("arabicOuter").style.height=window.innerHeight/2+"px";
+		//document.getElementById("englishOuter").style.height=window.innerHeight/2+"px";
+		//document.getElementById("englishOuter").style.top=window.innerHeight/2+"px";
+		
+		var arText = document.getElementById("arabicText");
+		var enText = document.getElementById("englishText");
+		
+		var arabic;
+		var english;
+		
+		var attribs = document.URL.split("?")[1].split("&");
+		
+		var duaNum = attribs[1];
+		var transitionSpeed = attribs[2];
+		
+		document.getElementById("arabicOuter").style.backgroundImage="linear-gradient("+attribs[3]+", "+attribs[4]+")";
+		
+		document.getElementById("arabicOuter").style.color=attribs[5];
+		
+		document.getElementById("englishOuter").style.backgroundImage="linear-gradient("+attribs[6]+", "+attribs[7]+")";
+		
+		document.getElementById("englishOuter").style.color=attribs[8];
+		
+		switch(attribs[0]){
+			case "dua":
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					var duaObj = JSON.parse(this.responseText);
+					arabic=duaObj[duaNum].arabic.split("\n");
+					english=duaObj[duaNum].english.split("\n");
+					arText.innerHTML = arabic[0];
+					enText.innerHTML = english[0];
+				  }
+				};
+				xmlhttp.open("GET", "duas.json", true);
+				xmlhttp.send();
+				break;
+			case "ziyara":
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					var duaObj = JSON.parse(this.responseText);
+					arabic=duaObj[duaNum].arabic.split("\n");
+					english=duaObj[duaNum].english.split("\n");
+					arText.innerHTML = arabic[0];
+					enText.innerHTML = english[0];
+				  }
+				};
+				xmlhttp.open("GET", "ziyarat.json", true);
+				xmlhttp.send();
+				break;
+		}
+		
+		document.addEventListener('keypress', nextOrBack);
+		
+		var index = 0;
+		var disapp;
+		var reapp;
+		var transitionFrames = 0.03;
+		//If right pressed, next line, unless on last line, if left pressed, previous line, unless first line
+		
+		function nextOrBack(e) {
+			switch(e.code){
+				case "KeyD":
+				case "ArrowRight":
+					clearInterval(disapp);
+					clearInterval(reapp);
+					index++;
+					if(index<arabic.length){
+						var x = 1;
+						arText.style.opacity=1;
+						enText.style.opacity=1;
+						disapp = setInterval(function(){
+							arText.style.opacity=x;
+							enText.style.opacity=x;
+							if(x<0){
+								x=0;
+								arText.style.opacity=0;
+								enText.style.opacity=0;
+								clearInterval(disapp);
+								arText.innerHTML = arabic[index];
+								enText.innerHTML = english[index];
+								reapp = setInterval(function(){
+									arText.style.opacity=x;
+									enText.style.opacity=x;
+									if(x>1){
+										clearInterval(reapp);
+										x=1;
+									}
+									x+=transitionFrames;
+								}, transitionSpeed);
+							}
+							x-=transitionFrames;
+						}, transitionSpeed);
+						
+					}else{
+						index--;
+					}
+					break;
+				case "KeyA":
+				case "ArrowLeft":
+					index--;
+					if(index>=0){
+						arText.innerHTML = arabic[index];
+						enText.innerHTML = english[index];
+					}else{
+						index++;
+					}
+					break;
+			}
+		}
+	</script>
+	
+</body>
+
+</html>
