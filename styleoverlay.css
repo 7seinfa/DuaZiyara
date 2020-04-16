@@ -12,7 +12,7 @@
     color: #357d14;
     background-image: linear-gradient(white, lightgrey);
 	top: 0;
-	height: 40%;
+	height: 50%;
 	direction: rtl;
 }
 
@@ -22,8 +22,8 @@
     background-color: rgba(53, 125, 20);
     display: inline-block;
     color: white;
-	height: 60%;
-	top: 40%;
+	height: 50%;
+	top: 50%;
 }
 
 #arabicText, #englishText {

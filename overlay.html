@@ -41,6 +41,10 @@
 		
 		document.getElementById("englishOuter").style.color=attribs[8];
 		
+		document.getElementById("englishOuter").style.fontSize=attribs[9];
+		
+		document.getElementById("arabicOuter").style.fontSize=attribs[10];
+		
 		switch(attribs[0]){
 			case "dua":
 				var xmlhttp = new XMLHttpRequest();
@@ -68,6 +72,20 @@
 				  }
 				};
 				xmlhttp.open("GET", "ziyarat.json", true);
+				xmlhttp.send();
+				break;
+			case "ram":
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					var duaObj = JSON.parse(this.responseText);
+					arabic=duaObj[duaNum].arabic.split("\n");
+					english=duaObj[duaNum].english.split("\n");
+					arText.innerHTML = arabic[0];
+					enText.innerHTML = english[0];
+				  }
+				};
+				xmlhttp.open("GET", "ramadan.json", true);
 				xmlhttp.send();
 				break;
 		}
@@ -133,5 +151,5 @@
 	</script>
 	
 </body>
- 
+
 </html>

@@ -16,6 +16,13 @@
 			</div>
 		</div>
 		
+		<div id = "Ramadan Duas" class = "container">
+			<h1 class = "title">Duas</h1>
+			<div id = "ramDuaNames" class = "innerContainer">
+			
+			</div>
+		</div>
+		
 		<div id = "ziyaras" class = "container">
 			<h1 class = "title">Ziyaras</h1>
 			<div id = "ziyaraNames" class = "innerContainer">
@@ -26,49 +33,57 @@
 		<div class = "container">
 			<h1 class = "title">Settings</h1>
 			<div id = "settings" class = "innerContainer" style = "columns: 1;columns: 1;display: inline-flex;width: -moz-available;">
-				<div id = "slideshowSettings" style="float: left;">
+				<div id = "slideshowSettings" style="float: left;width:50%;">
 					<h1 class = "enabled" id = "slide">Slideshow</h1>
 					<div class = "row">
 						<h2>Transition Speed:</h2>
-						<input class = "right" id = "tSpeed" type = "text" value = "15"></input>
+						<input class = "right" id = "tSpeed" type = "text" value = "1"></input>
 					</div>
 					<br>
 					<h2>Arabic Color Options (Hex):</h2>
 					<div class = "row">
 						<h2>Top:</h2>
-						<input class = "right" id = "arTop" type = "text" value = "#FFFFFF"></input>
+						<input class = "right" id = "arTop" type = "text" value = "#006161"></input>
 					</div>
 					<div class = "row">
 						<h2>Bottom</h2>
-						<input class = "right" id = "arBot" type = "text" value = "#D3D3D3"></input>
+						<input class = "right" id = "arBot" type = "text" value = "#009494"></input>
 					</div>
 					<br>
 					<div class = "row">
 						<h2>Arabic Text Color</h2>
-						<input class = "right" id = "arText" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "arText" type = "text" value = "#FFFFFF"></input>
 					</div>
 					<br>
 					<h2>English Color Options (Hex):</h2>
 					<div class = "row">
 						<h2>Top:</h2>
-						<input class = "right" id = "enTop" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "enTop" type = "text" value = "#48bf84"></input>
 					</div>
 					<div class = "row">
 						<h2>Bottom</h2>
-						<input class = "right" id = "enBot" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "enBot" type = "text" value = "#439775"></input>
 					</div>
 					<br>
 					<div class = "row">
 						<h2>English Text Color</h2>
 						<input class = "right" id = "enText" type = "text" value = "#FFFFFF"></input>
 					</div>
-					
+					<br>
+					<div class = "row">
+						<h2>English Font Size (vw)</h2>
+						<input class = "right" id = "enFont" type = "text" value = "2vw"></input>
+					</div>
+					<div class = "row">
+						<h2>Arabic Font Size (vw)</h2>
+						<input class = "right" id = "arFont" type = "text" value = "3vw"></input>
+					</div>
 				</div>
-				<div id = "overlaySettings" style="float: right;width: 50%;">
+				<div id = "overlaySettings" style="float: right;width: 50%;margin-left: 3%;">
 					<h1 class = "disabled" id = "overlay">Overlay</h1>
 					<div class = "row">
 						<h2>Transition Speed:</h2>
-						<input class = "right" id = "tSpeedO" type = "text" value = "15"></input>
+						<input class = "right" id = "tSpeedO" type = "text" value = "1"></input>
 					</div>
 					<br>
 					<h2>Size (in pixels):</h2>
@@ -78,37 +93,46 @@
 					</div>
 					<div class = "row">
 						<h2>Height</h2>
-						<input class = "right" id = "height" type = "text" value = "400"></input>
+						<input class = "right" id = "height" type = "text" value = "200"></input>
 					</div>
 					<br>
 					<h2>Arabic Color Options (Hex):</h2>
 					<div class = "row">
 						<h2>Top:</h2>
-						<input class = "right" id = "arTopO" type = "text" value = "#FFFFFF"></input>
+						<input class = "right" id = "arTopO" type = "text" value = "#006161"></input>
 					</div>
 					<div class = "row">
 						<h2>Bottom</h2>
-						<input class = "right" id = "arBotO" type = "text" value = "#D3D3D3"></input>
+						<input class = "right" id = "arBotO" type = "text" value = "#009494"></input>
 					</div>
 					<br>
 					<div class = "row">
 						<h2>Arabic Text Color</h2>
-						<input class = "right" id = "arTextO" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "arTextO" type = "text" value = "#FFFFFF"></input>
 					</div>
 					<br>
 					<h2>English Color Options (Hex):</h2>
 					<div class = "row">
 						<h2>Top:</h2>
-						<input class = "right" id = "enTopO" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "enTopO" type = "text" value = "#48bf84"></input>
 					</div>
 					<div class = "row">
 						<h2>Bottom</h2>
-						<input class = "right" id = "enBotO" type = "text" value = "#357d14"></input>
+						<input class = "right" id = "enBotO" type = "text" value = "#439775"></input>
 					</div>
 					<br>
 					<div class = "row">
 						<h2>English Text Color</h2>
 						<input class = "right" id = "enTextO" type = "text" value = "#FFFFFF"></input>
+					</div>
+					<br>
+					<div class = "row">
+						<h2>English Font Size (vw/px)</h2>
+						<input class = "right" id = "enFontO" type = "text" value = "1.5vw"></input>
+					</div>
+					<div class = "row">
+						<h2>Arabic Font Size (vw/px)</h2>
+						<input class = "right" id = "arFontO" type = "text" value = "2.5vw"></input>
 					</div>
 				</div>
 			</div>
@@ -127,6 +151,7 @@
 	<script>
 		var duaObj; //dua json file
 		var ziyaraObj; //ziyara json file
+		var ramObj; //ziyara json file
 
 
 		/* START PAGE */
@@ -145,6 +170,30 @@
 		
 		var transitionSpeed = document.getElementById("tSpeed").value;
 		document.getElementById("tSpeed").addEventListener("keyup", function(){transitionSpeed=document.getElementById("tSpeed").value;});
+		
+		var arTop = document.getElementById("arTop").value;
+		document.getElementById("arTop").addEventListener("keyup", function(){arTop=document.getElementById("arTop").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
+		
+		var arBot = document.getElementById("arBot").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";
+		document.getElementById("arBot").addEventListener("keyup", function(){arBot=document.getElementById("arBot").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
+		
+		var arText = document.getElementById("arText").value;document.getElementById("arabic").style.color=arText;
+		document.getElementById("arText").addEventListener("keyup", function(){arText=document.getElementById("arText").value;document.getElementById("arabic").style.color=arText;});
+		
+		var enTop = document.getElementById("enTop").value;
+		document.getElementById("enTop").addEventListener("keyup", function(){enTop=document.getElementById("enTop").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
+		
+		var enBot = document.getElementById("enBot").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";
+		document.getElementById("enBot").addEventListener("keyup", function(){enBot=document.getElementById("enBot").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
+		
+		var enText = document.getElementById("enText").value;document.getElementById("english").style.color=enText;
+		document.getElementById("enText").addEventListener("keyup", function(){enText=document.getElementById("enText").value;document.getElementById("english").style.color=enText;});
+		
+		var enFont = document.getElementById("enFont").value;document.getElementById("english").style.fontSize=enFont;
+		document.getElementById("enFont").addEventListener("keyup", function(){enFont=document.getElementById("enFont").value;document.getElementById("english").style.fontSize=enFont;});
+		
+		var arFont = document.getElementById("arFont").value;document.getElementById("arabic").style.fontSize=arFont;
+		document.getElementById("arFont").addEventListener("keyup", function(){arFont=document.getElementById("arFont").value;document.getElementById("arabic").style.fontSize=arFont;});
 		
 		var transitionSpeedO = document.getElementById("tSpeedO").value;
 		document.getElementById("tSpeedO").addEventListener("keyup", function(){transitionSpeedO=document.getElementById("tSpeedO").value;});
@@ -173,27 +222,16 @@
 		var enTextO = document.getElementById("enTextO").value;
 		document.getElementById("enTextO").addEventListener("keyup", function(){enTextO=document.getElementById("enTextO").value;});
 		
-		var arTop = document.getElementById("arTop").value;
-		document.getElementById("arTop").addEventListener("keyup", function(){arTop=document.getElementById("arTop").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
+		var enFontO = document.getElementById("enFontO").value;
+		document.getElementById("enFontO").addEventListener("keyup", function(){enFontO=document.getElementById("enFontO").value;});
 		
-		var arBot = document.getElementById("arBot").value;
-		document.getElementById("arBot").addEventListener("keyup", function(){arBot=document.getElementById("arBot").value;document.getElementById("arabic").style.backgroundImage="linear-gradient("+arTop+", "+arBot+")";});
-		
-		var arText = document.getElementById("arText").value;
-		document.getElementById("arText").addEventListener("keyup", function(){arText=document.getElementById("arText").value;document.getElementById("arabic").style.color=arText;});
-		
-		var enTop = document.getElementById("enTop").value;
-		document.getElementById("enTop").addEventListener("keyup", function(){enTop=document.getElementById("enTop").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
-		
-		var enBot = document.getElementById("enBot").value;
-		document.getElementById("enBot").addEventListener("keyup", function(){enBot=document.getElementById("enBot").value;document.getElementById("english").style.backgroundImage="linear-gradient("+enTop+", "+enBot+")";});
-		
-		var enText = document.getElementById("enText").value;
-		document.getElementById("enText").addEventListener("keyup", function(){enText=document.getElementById("enText").value;document.getElementById("english").style.color=enText;});
+		var arFontO = document.getElementById("arFontO").value;
+		document.getElementById("arFontO").addEventListener("keyup", function(){arFontO=document.getElementById("arFontO").value;});
 		
 		var startPage = document.getElementById("startPage");
 		var duaNamesElement = document.getElementById("duaNames");
 		var ziyaraNamesElement = document.getElementById("ziyaraNames");
+		var ramNamesElement = document.getElementById("ramDuaNames");
 		
 		//Open dua.json file, parse, and populate dua names, with value set as index
 		var xmlhttp = new XMLHttpRequest();
@@ -231,12 +269,31 @@
 		xmlhttp1.open("GET", "ziyarat.json", true);
 		xmlhttp1.send();
 		
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			ramObj = JSON.parse(this.responseText);
+			for(var i=0; i<ramObj.length; i++){
+				var newName=document.createElement("div");
+				newName.classList.add("ramDuaName");
+				newName.innerHTML=ramObj[i].title;
+				newName.setAttribute("value", i);
+				
+				ramNamesElement.appendChild(newName);
+			}
+		  }
+		};
+		xmlhttp1.open("GET", "ramadan.json", true);
+		xmlhttp1.send();
+		
 		//if the window is clicked, check if dua or ziyara is clicked, direct to function
 		window.onclick = e => {
 			if(e.target.classList[0]=="duaName"){
 				goToDua(e.target.getAttribute("value"));
 			}else if(e.target.classList[0]=="ziyaraName"){
 				goToZiyara(e.target.getAttribute("value"));
+			}else if(e.target.classList[0]=="ramDuaName"){
+				goToRam(e.target.getAttribute("value"));
 			}
 		} 
 		
@@ -263,7 +320,7 @@
 				document.addEventListener('keypress', nextOrBack);
 			}else{
 				alert("Use the A and D keys to navigate between lines.");
-				window.open("overlay.html?dua&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+				window.open("overlay.html?dua&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO+"&"+enFontO+"&"+arFontO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
 		}
 		function goToZiyara(i){
@@ -278,7 +335,22 @@
 				document.addEventListener('keypress', nextOrBack);
 			}else{
 				alert("Use the A and D keys to navigate between lines.");
-				window.open("overlay.html?ziyara&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+				window.open("overlay.html?ziyara&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO+"&"+enFontO+"&"+arFontO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+			}
+		}
+		function goToRam(i){
+			if(slideshow){
+				alert("Use the A and D keys to navigate between lines. Press Q to quit.");
+				startPage.style.display="none";
+				duaPage.style.display="";
+				arabic=ramObj[i].arabic.split("\n");
+				english=ramObj[i].english.split("\n");
+				arabicObj.innerHTML = arabic[0];
+				englishObj.innerHTML = english[0];
+				document.addEventListener('keypress', nextOrBack);
+			}else{
+				alert("Use the A and D keys to navigate between lines.");
+				window.open("overlay.html?ram&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO+"&"+enFontO+"&"+arFontO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
 		}
 		
