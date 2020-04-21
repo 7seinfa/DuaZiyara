@@ -8,17 +8,23 @@
 	  font-family: arabic;
 	  src: url("najaf.ttf");
 	}
+	
+	@font-face {
+	  font-family: quran;
+	  src: url("uthman3.ttf");
+	}
 
 	#english, #arabic {
 		text-align: center;
 		position: relative;
-		top: 75%;
+		top: 50%;
+		width: max-content;
 	}
 
 	#arabic {
 		font-family: arabic;
 		font-size: 3vw;
-		width: max-content;
+		//width: max-content;
 		display: inline-block;
 		padding: 10px 40px 15px 40px;
 		color: rgb(53, 125, 20);
@@ -30,7 +36,7 @@
 		font-family: Roberto;
 		font-size: 2vw;
 		background-color: rgba(53, 125, 20);
-		width: max-content;
+		//width: max-content;
 		display: inline-block;
 		padding: 10px;
 		max-width: 1440px;
@@ -41,7 +47,7 @@
 		height: 100%;
 	}
 
-	.duaName, .ziyaraName, .ramDuaName{
+	.duaName, .ziyaraName, .ramDuaName, .quranName{
 		font-size: 1vw;
 		background-color: white;
 		padding: 10px 10px 10px 10px;
@@ -51,7 +57,7 @@
 	}
 	.container{
 		display: inline-block;
-		width: 20%;
+		width: 15%;
 		background-color: rgb(53, 125, 20);
 		padding: 5px 20px 20px 20px;
 		border-radius: 5px;

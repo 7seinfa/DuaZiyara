@@ -89,6 +89,45 @@
 				xmlhttp.open("GET", "ramadan.json", true);
 				xmlhttp.send();
 				break;
+			case "quran":
+				var quranArabic;
+				var quranEnglish;
+				arabic=[];
+				english=[];
+				var xmlhttp1 = new XMLHttpRequest();
+				xmlhttp1.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					quranArabic = JSON.parse(this.responseText);
+					if(duaNum!=10&&duaNum!=0){
+						arabic.push(quranArabic["quran"]["sura"][0]["aya"][0]["-text"]);
+					}
+					for(var x = 0; x < quranArabic["quran"]["sura"][duaNum]["aya"].length; x++){
+						var newNum=(x+1).toString();
+						arabic.push(quranArabic["quran"]["sura"][duaNum]["aya"][x]["-text"] + " ﴿"+toAr((x+1).toString())+"﴾");
+					}
+					arText.innerHTML = arabic[0];
+				  }
+				};
+				xmlhttp1.open("GET", "quran.json", true);
+				xmlhttp1.send();
+				
+				var xmlhttp1 = new XMLHttpRequest();
+				xmlhttp1.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					quranEnglish = JSON.parse(this.responseText);
+					if(duaNum!=10&&duaNum!=0){
+						english.push(quranEnglish["quran"]["sura"][0]["aya"][0]["-text"]);
+					}
+					for(var x = 0; x < quranEnglish["quran"]["sura"][duaNum]["aya"].length; x++){
+						english.push(quranEnglish["quran"]["sura"][duaNum]["aya"][x]["-text"] + " ("+(x+1)+")");
+					}
+					enText.innerHTML = english[0];
+				  }
+				};
+				xmlhttp1.open("GET", "qarai.json", true);
+				xmlhttp1.send();
+				
+				break;
 		}
 		
 		document.addEventListener('keypress', nextOrBack);
@@ -96,7 +135,7 @@
 		var index = 0;
 		var disapp;
 		var reapp;
-		var transitionFrames = 0.03;
+		var transitionFrames = 0.05;
 		//If right pressed, next line, unless on last line, if left pressed, previous line, unless first line
 		
 		function nextOrBack(e) {
@@ -148,6 +187,21 @@
 					}
 					break;
 			}
+		}
+		
+		function toAr(orig) {
+			var id= ['۰','۱','٢','٣','٤','٥','٦','٧','٨','٩'];
+			var en= ['0','1','2','3','4','5','6','7','8','9'];
+			var ar="";
+			for(var i = 0; i<orig.length; i++){
+				//alert(orig[i]);
+				for(var x = 0; x<en.length; x++){
+					if(orig[i]==en[x]){
+						ar+=id[x];
+					}
+				}
+			}
+			return ar;
 		}
 	</script>
 	

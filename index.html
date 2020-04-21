@@ -30,6 +30,13 @@
 			</div>
 		</div>
 		
+		<div id = "quran" class = "container">
+			<h1 class = "title">Quran</h1>
+			<div id = "quranNames" class = "innerContainer">
+			
+			</div>
+		</div>
+		
 		<div class = "container">
 			<h1 class = "title">Settings</h1>
 			<div id = "settings" class = "innerContainer" style = "columns: 1;columns: 1;display: inline-flex;width: -moz-available;">
@@ -149,6 +156,9 @@
 		var duaObj; //dua json file
 		var ziyaraObj; //ziyara json file
 		var ramObj; //ziyara json file
+		var surahInfoObj;
+		var quranArabic;
+		var quranEnglish;
 
 
 		/* START PAGE */
@@ -229,6 +239,7 @@
 		var duaNamesElement = document.getElementById("duaNames");
 		var ziyaraNamesElement = document.getElementById("ziyaraNames");
 		var ramNamesElement = document.getElementById("ramDuaNames");
+		var surahNamesElement = document.getElementById("quranNames");
 		
 		//Open dua.json file, parse, and populate dua names, with value set as index
 		var xmlhttp = new XMLHttpRequest();
@@ -283,6 +294,41 @@
 		xmlhttp1.open("GET", "ramadan.json", true);
 		xmlhttp1.send();
 		
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			surahInfoObj = JSON.parse(this.responseText);
+			for(var i=0; i<surahInfoObj.length; i++){
+				var newName=document.createElement("div");
+				newName.classList.add("quranName");
+				newName.innerHTML=surahInfoObj[i].title;
+				newName.setAttribute("value", i);
+				
+				surahNamesElement.appendChild(newName);
+			}
+		  }
+		};
+		xmlhttp1.open("GET", "surahinfo.json", true);
+		xmlhttp1.send();
+		
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			quranArabic = JSON.parse(this.responseText);
+		  }
+		};
+		xmlhttp1.open("GET", "quran.json", true);
+		xmlhttp1.send();
+		
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			quranEnglish = JSON.parse(this.responseText);
+		  }
+		};
+		xmlhttp1.open("GET", "qarai.json", true);
+		xmlhttp1.send();
+		
 		//if the window is clicked, check if dua or ziyara is clicked, direct to function
 		window.onclick = e => {
 			if(e.target.classList[0]=="duaName"){
@@ -291,8 +337,11 @@
 				goToZiyara(e.target.getAttribute("value"));
 			}else if(e.target.classList[0]=="ramDuaName"){
 				goToRam(e.target.getAttribute("value"));
+			}else if(e.target.classList[0]=="quranName"){
+				goToQuran(e.target.getAttribute("value"));
 			}
 		} 
+		
 		
 		
 		/* DUA/ZIYARA SLIDE */
@@ -313,6 +362,7 @@
 				arabic=duaObj[i].arabic.split("\n");
 				english=duaObj[i].english.split("\n");
 				arabicObj.innerHTML = arabic[0];
+				arabicObj.style.fontFamily="";
 				englishObj.innerHTML = english[0];
 				document.addEventListener('keypress', nextOrBack);
 			}else{
@@ -328,6 +378,7 @@
 				arabic=ziyaraObj[i].arabic.split("\n");
 				english=ziyaraObj[i].english.split("\n");
 				arabicObj.innerHTML = arabic[0];
+				arabicObj.style.fontFamily="";
 				englishObj.innerHTML = english[0];
 				document.addEventListener('keypress', nextOrBack);
 			}else{
@@ -343,11 +394,32 @@
 				arabic=ramObj[i].arabic.split("\n");
 				english=ramObj[i].english.split("\n");
 				arabicObj.innerHTML = arabic[0];
+				arabicObj.style.fontFamily="";
 				englishObj.innerHTML = english[0];
 				document.addEventListener('keypress', nextOrBack);
 			}else{
 				alert("Use the A and D keys to navigate between lines.");
 				window.open("overlay.html?ram&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO+"&"+enFontO+"&"+arFontO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
+			}
+		}
+		function goToQuran(i){
+			if(slideshow){
+				alert("Use the A and D keys to navigate between lines. Press Q to quit.");
+				startPage.style.display="none";
+				duaPage.style.display="";
+				arabic=[];
+				english=[];
+				for(var x = 0; x < quranArabic["quran"]["sura"][i]["aya"].length; x++){
+					arabic.push(quranArabic["quran"]["sura"][i]["aya"][x]["-text"]);
+					english.push(quranEnglish["quran"]["sura"][i]["aya"][x]["-text"]);
+				}
+				arabicObj.innerHTML = arabic[0];
+				arabicObj.style.fontFamily="quran";
+				englishObj.innerHTML = english[0];
+				document.addEventListener('keypress', nextOrBack);
+			}else{
+				alert("Use the A and D keys to navigate between lines.");
+				window.open("overlay.html?quran&"+i+"&"+transitionSpeedO+"&"+arTopO+"&"+arBotO+"&"+arTextO+"&"+enTopO+"&"+enBotO+"&"+enTextO+"&"+enFontO+"&"+arFontO, '_blank',"menubar=1,resizable=0,height="+height+",width="+width+",innerHeight="+height+",innerWidth="+width); 
 			}
 		}
 		
