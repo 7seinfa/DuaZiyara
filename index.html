@@ -409,9 +409,13 @@
 				duaPage.style.display="";
 				arabic=[];
 				english=[];
+				if(i!=10&&i!=0){
+					english.push(quranEnglish["quran"]["sura"][0]["aya"][0]["-text"]);
+					arabic.push(quranArabic["quran"]["sura"][0]["aya"][0]["-text"]);
+				}
 				for(var x = 0; x < quranArabic["quran"]["sura"][i]["aya"].length; x++){
-					arabic.push(quranArabic["quran"]["sura"][i]["aya"][x]["-text"]);
-					english.push(quranEnglish["quran"]["sura"][i]["aya"][x]["-text"]);
+					arabic.push(removeLetters(quranArabic["quran"]["sura"][i]["aya"][x]["-text"] + " <a style=\"font-family:quran2;display:inline-block;height:0px;\"> ﴿"+toAr((x+1).toString())+"﴾</p>"));
+					english.push(quranEnglish["quran"]["sura"][i]["aya"][x]["-text"] + " (" + (x+1) + ")");
 				}
 				arabicObj.innerHTML = arabic[0];
 				arabicObj.style.fontFamily="quran";
@@ -488,6 +492,35 @@
 			}
 			
 		}
+		
+		function toAr(orig) {
+			var id= ['۰','۱','٢','٣','٤','٥','٦','٧','٨','٩'];
+			var en= ['0','1','2','3','4','5','6','7','8','9'];
+			var ar="";
+			for(var i = 0; i<orig.length; i++){
+				//alert(orig[i]);
+				for(var x = 0; x<en.length; x++){
+					if(orig[i]==en[x]){
+						ar+=id[x];
+					}
+				}
+			}
+			return ar;
+		}
+		
+		function removeLetters(orig) {
+			var ar=orig.replaceAll("ا۟","ا");
+			var ar=ar.replaceAll("ٍۭ","ٍ");
+			//for(var x = 0; x<en.length; x++){
+			//	ar.replaceAll(en[x],id[x]);
+			//}
+			return ar;
+		}
+		
+		String.prototype.replaceAll = function(search, replacement) {
+			var target = this;
+			return target.replace(new RegExp(search, 'g'), replacement);
+		};
 		
 	</script>
 </body>

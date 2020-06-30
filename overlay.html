@@ -17,7 +17,9 @@
 		
 		</div>
 	</div>
-	
+	<div id = "name">
+		Al-Ahzab
+	</div>
 	<script>
 		//document.getElementById("arabicOuter").style.height=window.innerHeight/2+"px";
 		//document.getElementById("englishOuter").style.height=window.innerHeight/2+"px";
@@ -52,6 +54,7 @@
 				xmlhttp.onreadystatechange = function() {
 				  if (this.readyState == 4 && this.status == 200) {
 					var duaObj = JSON.parse(this.responseText);
+					document.getElementById("name").innerHTML=duaObj[duaNum]["title"];
 					arabic=duaObj[duaNum].arabic.split("\n");
 					english=duaObj[duaNum].english.split("\n");
 					arText.innerHTML = arabic[0];
@@ -66,6 +69,7 @@
 				xmlhttp.onreadystatechange = function() {
 				  if (this.readyState == 4 && this.status == 200) {
 					var duaObj = JSON.parse(this.responseText);
+					document.getElementById("name").innerHTML=duaObj[duaNum]["title"];
 					arabic=duaObj[duaNum].arabic.split("\n");
 					english=duaObj[duaNum].english.split("\n");
 					arText.innerHTML = arabic[0];
@@ -80,6 +84,7 @@
 				xmlhttp.onreadystatechange = function() {
 				  if (this.readyState == 4 && this.status == 200) {
 					var duaObj = JSON.parse(this.responseText);
+					document.getElementById("name").innerHTML=duaObj[duaNum]["title"];
 					arabic=duaObj[duaNum].arabic.split("\n");
 					english=duaObj[duaNum].english.split("\n");
 					arText.innerHTML = arabic[0];
@@ -103,11 +108,12 @@
 					}
 					for(var x = 0; x < quranArabic["quran"]["sura"][duaNum]["aya"].length; x++){
 						var newNum=(x+1).toString();
-						arabic.push(quranArabic["quran"]["sura"][duaNum]["aya"][x]["-text"] + " ﴿"+toAr((x+1).toString())+"﴾");
+						arabic.push(removeLetters(quranArabic["quran"]["sura"][duaNum]["aya"][x]["-text"] + "<a style=\"font-family:quran2\"> ﴿"+toAr((x+1).toString())+"﴾</p>"));
 					}
 					arText.innerHTML = arabic[0];
 				  }
 				};
+				arText.style.fontFamily="quran";
 				xmlhttp1.open("GET", "quran.json", true);
 				xmlhttp1.send();
 				
@@ -127,6 +133,16 @@
 				xmlhttp1.open("GET", "qarai.json", true);
 				xmlhttp1.send();
 				
+				var xmlhttp1 = new XMLHttpRequest();
+				xmlhttp1.onreadystatechange = function() {
+				  if (this.readyState == 4 && this.status == 200) {
+					var surahInfo = JSON.parse(this.responseText);
+					document.getElementById("name").innerHTML=surahInfo[duaNum]["title"];
+				  }
+				};
+				xmlhttp1.open("GET", "surahinfo.json", true);
+				xmlhttp1.send();
+				
 				break;
 		}
 		
@@ -135,7 +151,7 @@
 		var index = 0;
 		var disapp;
 		var reapp;
-		var transitionFrames = 0.05;
+		var transitionFrames = 0.1;
 		//If right pressed, next line, unless on last line, if left pressed, previous line, unless first line
 		
 		function nextOrBack(e) {
@@ -171,7 +187,6 @@
 							}
 							x-=transitionFrames;
 						}, transitionSpeed);
-						
 					}else{
 						index--;
 					}
@@ -203,6 +218,22 @@
 			}
 			return ar;
 		}
+		
+		function removeLetters(orig) {
+			var ar=orig.replaceAll("ا۟","ا");
+			var ar=ar.replaceAll("ٍۭ","ٍ");
+			var ar=ar.replaceAll("و۟","و");
+			//for(var x = 0; x<en.length; x++){
+			//	ar.replaceAll(en[x],id[x]);
+			//}
+			return ar;
+		}
+		
+		String.prototype.replaceAll = function(search, replacement) {
+			var target = this;
+			return target.replace(new RegExp(search, 'g'), replacement);
+		};
+		
 	</script>
 	
 </body>

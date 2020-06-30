@@ -10,8 +10,12 @@
 	}
 	
 	@font-face {
-	  font-family: quran;
-	  src: url("uthman3.ttf");
+		font-family: quran;
+		src: url("uthman2.otf");
+	}
+@font-face {
+		font-family: quran2;
+		src: url("uthman.otf");
 	}
 
 	#english, #arabic {

@@ -1,3 +1,17 @@
+@font-face {
+	font-family: quran;
+	src: url("uthman2.otf");
+}
+@font-face {
+	font-family: quran2;
+	src: url("uthman.otf");
+}
+
+@font-face {
+	  font-family: arabic;
+	  src: url("najaf.ttf");
+	}
+
 #englishOuter, #arabicOuter {
 	text-align: center;
 	position: absolute;
@@ -31,4 +45,20 @@
 	position: relative;
 	transform: translateY(-50%);
 	padding: 0 2% 0 2%;
+	width: 70%;
+	text-align:center;
+	display: inline-block;
+}
+
+#arabicText {
+	top: 54%;
+}
+
+#name{
+	position: absolute;
+	bottom: 0;
+	transform: translate(30px,-30px);
+	font-family: Roberto;
+	font-size: 2vw;
+	color: white;
 }
